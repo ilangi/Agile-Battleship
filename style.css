@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.grid-user {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blue;
+  margin: 20px;
+}
+
+.grid-computer {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: orange;
+  margin: 20px;
+}
+
+
+
+.battleship-grid {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(200, 100%, 50%);
+  grid-template-rows: repeat(10, 5.5vmin);
+  grid-template-columns: repeat(10, 5.5vmin);
+}
+
+
+.battleship-grid div {
+  border: 1px solid rgba(226, 20, 20, 0.2);
+}
+
+.grid-display {
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+
+}
+
+.draggableShip1{
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+
+}
+
+
+
+
