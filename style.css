@@ -1,49 +1,37 @@
+
+/*-----------------------------------------------------*/
+/*Ocean map generation*/
+body {
+  margin: 0;
+  background-color: #F3F3F3;
+  overflow-x: hidden;
+}
+
 .container {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/*player map (you can change the width and height of the map, but then you will also need to change the map generation in the scipt*/
-/*current width and height are 10* 10*/
-.grid-user {
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px;
-}
-
-/*computer map*/
-.grid-computer {
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px;
-}
-
-
-/*ocrean map background*/
 .battleship-grid {
-  margin: 2vmin;
+  margin: 3vmin;
   display: grid;
   background-color: hsl(200, 100%, 50%);
-  grid-template-rows: repeat(10, 5.5vmin);
-  grid-template-columns: repeat(10, 5.5vmin);
+  grid-template-rows: repeat(10, 5.8vmin);
+  grid-template-columns: repeat(10, 5.8vmin);
 }
-
 
 .battleship-grid div {
-  border: 1px solid rgba(10, 10, 10, 0.2);
+  border: 1px solid rgba(5, 5, 5, 0.2);
 }
 
 
-/*-------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*Ships design*/
+/*you can change the width and height of the ship*/
+/*the way how it present in the screen*/
+/*width and height can not > the container height and width */
 
-/*ship yard. where you can drag ships into the player map (in progress)*/
-
-/*
 .grid-display {
   display: flex;
 }
@@ -52,11 +40,8 @@
   width: 4.6vmin;
   height: 4.6vmin;
 }
-*/
 
 .ship {
-  position: relative;
-  background-color: hsl(0, 0%, 80%);
   display: flex;
   flex-wrap: wrap;
   margin: 1vmin;
@@ -65,28 +50,72 @@
   border-radius: 2.3vmin;
 }
 
-.Black_Pearl{
+.battleship1 {
   --width: 2;
 }
 
-.Blood_Lightening{
-  --width: 4;
-}
-
-.Bone_Heart{
-  --width: 6;
-}
-
-.Angle_Of_Doom{
+.battleship2{
   --width: 3;
 }
 
-.Barbaric_Serpent{
+.battleship3 {
+  --width: 3;
+}
+
+.battleship4 {
   --width: 4;
 }
 
+.battleship5{
+  --width: 5;
+}
 
+/*---------------------------------------------------------------*/
+/*draggable ship*/
+/*each ship can be drag into player map but the computer or you can change in the script( DO NOT DO THAT PLEASE)*/ 
 
+.taken,
+.ship {
+  position: relative;
+  background-color: black;
 
+}
 
+.taken.start.vertical,
+.taken.start.vertical::before {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.taken.end.vertical,
+.taken.end.vertical::before {
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.start.horizontal,
+.taken.start.horizontal::before {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.taken.end.horizontal,
+.taken.end.horizontal::before {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.vertical::before,
+.taken.horizontal::before {
+  content: '';
+  position: absolute;
+  border: .3vmin solid white;
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+}
+
+/*--------------------------------------------------*/
+/**/
 
