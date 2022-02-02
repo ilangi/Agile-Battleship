@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 10
 
 
+//create ocrean map
   function createBoard(grid, squares) {
     for (let i = 0; i < width*width; i++) {
       const square = document.createElement('div')
@@ -21,4 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
+//-------------------------------------------------------------------------------------------
 
+//draggable ships9 (in progress)
