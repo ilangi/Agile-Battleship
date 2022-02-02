@@ -4,26 +4,27 @@
   width: 100%;
 }
 
+/*player map (you can change the width and height of the map, but then you will also need to change the map generation in the scipt*/
+/*current width and height are 10* 10*/
 .grid-user {
   width: 400px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
-  background-color: blue;
   margin: 20px;
 }
 
+/*computer map*/
 .grid-computer {
   width: 400px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
-  background-color: orange;
   margin: 20px;
 }
 
 
-
+/*ocrean map background*/
 .battleship-grid {
   margin: 2vmin;
   display: grid;
@@ -34,27 +35,57 @@
 
 
 .battleship-grid div {
-  border: 1px solid rgba(226, 20, 20, 0.2);
+  border: 1px solid rgba(10, 10, 10, 0.2);
 }
 
+
+/*-------------------------------------------------------------------------------------------*/
+
+/*ship yard. where you can drag ships into the player map (in progress)*/
+
+/*
 .grid-display {
-  width: 400px;
-  height: 400px;
-  margin: 20px;
-  background-color: lightblue;
   display: flex;
-  justify-content: center;
-
 }
 
-.draggableShip1{
-  position: absolute;
-  z-index: 9;
-  background-color: #f1f1f1;
-  text-align: center;
-  border: 1px solid #d3d3d3;
-
+.ship > div {
+  width: 4.6vmin;
+  height: 4.6vmin;
 }
+*/
+
+.ship {
+  position: relative;
+  background-color: hsl(0, 0%, 80%);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1vmin;
+  width: calc(4.6vmin * var(--width, 1));
+  height: calc(4.6vmin * var(--height, 1));
+  border-radius: 2.3vmin;
+}
+
+.Black_Pearl{
+  --width: 2;
+}
+
+.Blood_Lightening{
+  --width: 4;
+}
+
+.Bone_Heart{
+  --width: 6;
+}
+
+.Angle_Of_Doom{
+  --width: 3;
+}
+
+.Barbaric_Serpent{
+  --width: 4;
+}
+
+
 
 
 
