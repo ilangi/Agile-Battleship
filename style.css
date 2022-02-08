@@ -116,6 +116,75 @@ body {
   right: 1px;
 }
 
+/*----------------------------------------------------*/
+/*Rotate ships*/
+.battleship1-vertical{
+  --height: 2;
+  --width: 1;
+}
+
+.battleship2-vertical{
+  --height: 3;
+  --width: 1;
+}
+
+.battleship3-vertical{
+  --height: 3;
+  --width:1
+}
+
+.battleship4-vertical{
+  --height: 4;
+  --width: 1;
+}
+
+.battleship5-vertical{
+  --height: 5;
+  --width: 1;
+}
+
+
+
 /*--------------------------------------------------*/
-/**/
+/*Rotate button and start button*/
+
+
+.button-container{
+  height: 200px;
+  position: relative;
+  border: 3px solid red;
+}
+
+.rotate-button{
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 30%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.start-button{
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 70%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/*---------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
