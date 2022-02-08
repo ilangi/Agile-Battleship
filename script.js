@@ -1,14 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const userGrid = document.querySelector('.grid-user')
-  const computerGrid = document.querySelector('.grid-computer')
+  const userGrid = document.querySelector('.grid-user');
+  const computerGrid = document.querySelector('.grid-computer');
   
   const userSquares = []
   const computerSquares = []
   const width = 10
 
-  const displayGrid = document.querySelector('.grid-display')
-  const ships = document.querySelectorAll('.ship')
+  const displayGrid = document.querySelector('.grid-display');
+  const ships = document.querySelectorAll('.ship');
+
+
   let isHorizontal = true
+
+  const rotateButton = document.getElementById('rotateButton');
+
+  //const battleship1 = document.getElementById('battleship1');
+  const ship1 = document.querySelector('.battleship1');
+  const ship2 = document.querySelector('.battleship2');
+  const ship3 = document.querySelector('.battleship3');
+  const ship4 = document.querySelector('.battleship4');
+  const ship5 = document.querySelector('.battleship5');
 
 
   /*----------------------------------------------- */
@@ -105,8 +116,53 @@ function dragDrop() {
 
 function dragEnd() {
 }
-})
+
+/*------------------------------------------------------------------------------------------*/
+//Rotate player ships  ( when rotate button is clicked)
+
+function rotate(){
+  console.log("testing");
+
+  if(isHorizontal){
+    //document.getElementById("battleship1-0").style.backgroundColor = "lightblue";
+    ship1.classList.toggle('battleship1-vertical');
+    ship2.classList.toggle('battleship2-vertical');
+    ship3.classList.toggle('battleship3-vertical');
+    ship4.classList.toggle('battleship4-vertical');
+    ship5.classList.toggle('battleship5-vertical');
+    
+    //ship1.style.backgroundColor = "white";
+    isHorizontal = false;
+    console.log("testing vertical")
+    return
+  }
+  if(!isHorizontal){
+    ship1.classList.toggle('battleship1-vertical');
+    ship2.classList.toggle('battleship2-vertical');
+    ship3.classList.toggle('battleship3-vertical');
+    ship4.classList.toggle('battleship4-vertical');
+    ship5.classList.toggle('battleship5-vertical');
+    isHorizontal = true;
+    return
+  }
+  console.log("testing 2")
+}
+
+rotateButton.addEventListener('click', rotate);
+
+
+
 
 /*------------------------------------------------------------------------------------------- */
-//Randomly place 5 ships on computer ocrean map
+//Randomly place 5 ships on computer ocrean map ( when start button is clicked)
  
+
+
+
+
+
+
+/*---------------------------------------------------------------------------------------------*/
+
+
+})
