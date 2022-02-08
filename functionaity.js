@@ -31,8 +31,7 @@ const playerOneTurn = turn => {
 
 
 while (totalSectionsp2 > 0 && totalSectionsp1 > 0) {
-  let x = prompt('Enter the x coordinate for your attack');
-  let y = prompt('Enter the y coordinate for your attack');
+
 }
 
 
@@ -41,15 +40,28 @@ while (totalSectionsp2 > 0 && totalSectionsp1 > 0) {
 
 
 if (totalSectionsp1 < totalSectionsp2) {
-  console.log('player 2 wins');
+console.log('player 2 wins');
 } else {
-  console.log('player 1 wins');
+console.log('player 1 wins');
 }
 
 
 
 
 function placeCharacter(x, y, c, grid) {
-  grid[y][x] = c;
+grid[y][x] = c;
+}
+
+function placeRandomCharacter(c, grid, max) {
+    let didPlace = false;
+    while (!didPlace) {
+    let x = getRandomInt(max);
+    let y = getRandomInt(max);
+    if (!enemyLocations[`${x}-${y}`]) {
+        placeCharacter(x, y, c, grid);
+        didPlace = true;
+        enemyLocations[`${x}-${y}`] = true;
+    }
+    }
 }
 
