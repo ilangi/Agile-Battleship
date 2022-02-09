@@ -21,6 +21,7 @@ body {
   grid-template-columns: repeat(10, 5.8vmin);
 }
 
+
 .battleship-grid div {
   border: 1px solid rgba(5, 5, 5, 0.2);
 }
@@ -50,6 +51,7 @@ body {
   border-radius: 2.3vmin;
 }
 
+
 .battleship1 {
   --width: 2;
 }
@@ -73,11 +75,18 @@ body {
 /*---------------------------------------------------------------*/
 /*draggable ship*/
 /*each ship can be drag into player map but the computer or you can change in the script( DO NOT DO THAT PLEASE)*/ 
-
+/*computer ships*/
 .taken,
 .ship {
   position: relative;
   background-color: black;
+
+}
+
+.takenC,
+.shipC {
+  position: relative;
+  background-color: red;
 
 }
 
@@ -115,6 +124,8 @@ body {
   left: 1px;
   right: 1px;
 }
+
+
 
 /*----------------------------------------------------*/
 /*Rotate ships*/
