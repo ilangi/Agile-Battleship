@@ -10,16 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const ships = document.querySelectorAll('.ship');
 
 
-  let isHorizontal = true
+  let isHorizontal = true;
+  let allShipsPlaced = false;
+  let CheckWin = false;
 
   const rotateButton = document.getElementById('rotateButton');
+  const startButton = document.getElementById('startButton');
 
-  //const battleship1 = document.getElementById('battleship1');
   const ship1 = document.querySelector('.battleship1');
   const ship2 = document.querySelector('.battleship2');
   const ship3 = document.querySelector('.battleship3');
   const ship4 = document.querySelector('.battleship4');
   const ship5 = document.querySelector('.battleship5');
+
 
 
   /*----------------------------------------------- */
@@ -76,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /*---------------------------------------------------------------------*/
 //releases the ship on the player map, it will drops the ship inside the grid 
 //ships only can be place on player map not on the computer map
+//check if all player ships are used 
 function dragDrop() {
   let shipNameWithLastId = draggedShip.lastChild.id
   let shipClass = shipNameWithLastId.slice(0, -2)
@@ -120,6 +124,8 @@ function dragEnd() {
 /*------------------------------------------------------------------------------------------*/
 //Rotate player ships  ( when rotate button is clicked)
 
+rotateButton.addEventListener('click', rotate);
+
 function rotate(){
   console.log("testing");
 
@@ -148,21 +154,107 @@ function rotate(){
   console.log("testing 2")
 }
 
-rotateButton.addEventListener('click', rotate);
 
 
 
 
 /*------------------------------------------------------------------------------------------- */
 //Randomly place 5 ships on computer ocrean map ( when start button is clicked)
- 
+
+  startButton.addEventListener('click', ()=>{
+    if(allShipsPlaced) startGame()
+    else alert("Please make sure all ships are placed before starting the game")
+  });
 
 
+const shipArray = [
+  {
+    name: 'ship1',
+    directions: [
+      [0, 1],
+      [0, width]
+    ]
+  
+  },
+  {
+    name: 'ship2',
+    directions: [
+      [0, 1, 2],
+      [0, width, width*2]
+    ]
+  
+  },
+
+  {
+    name: 'ship3',
+    directions: [
+      [0, 1, 2],
+      [0, width, width*2]
+    ]
+  
+  },
+  {
+    name: 'ship4',
+    directions: [
+      [0, 1, 2, 3],
+      [0, width, width*2, width*3,width*4]
+    ]
+  
+  },
+
+  {
+    name: 'ship5',
+    directions: [
+      [0, 1, 2, 3, 4],
+      [0, width, width*2, width*3,width*4,width*5]
+    ],
+  }
+
+]
 
 
+function startGame() {
+  console.log('start game testing')
+
+  generate(shipArray[0])
+  generate(shipArray[1])
+  generate(shipArray[2])
+  generate(shipArray[3])
+  generate(shipArray[4])
+  startButton.disabled = true;
+}
+
+
+function generate(ship) {
+  let randomDirection = Math.floor(Math.random() * ship.directions.length)
+  let current = ship.directions[randomDirection]
+  if (randomDirection === 0) direction = 1
+  if (randomDirection === 1) direction = 10
+  let randomStart = Math.abs(Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)))
+
+  const isTaken = current.some(index => computerSquares[randomStart + index].classList.contains('takenC'))
+  const isAtRightEdge = current.some(index => (randomStart + index) % width === width - 1)
+  const isAtLeftEdge = current.some(index => (randomStart + index) % width === 0)
+
+  if (!isTaken && !isAtRightEdge && !isAtLeftEdge) current.forEach(index => computerSquares[randomStart + index].classList.add('takenC', ship.name))
+
+  else generate(ship)
+}
 
 
 /*---------------------------------------------------------------------------------------------*/
+//Attacking system (Take turn between player and computer)
 
 
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------*/
+//Win condition
 })
