@@ -7,6 +7,11 @@ body {
   overflow-x: hidden;
 }
 
+*, *::before, *::after {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -14,18 +19,16 @@ body {
 }
 
 .battleship-grid {
-  margin: 3vmin;
+  margin: 2vmin;
   display: grid;
   background-color: hsl(200, 100%, 50%);
   grid-template-rows: repeat(10, 5.8vmin);
   grid-template-columns: repeat(10, 5.8vmin);
 }
 
-
 .battleship-grid div {
-  border: 1px solid rgba(5, 5, 5, 0.2);
+  border: 1px solid lightgray;
 }
-
 
 /*--------------------------------------------------------*/
 /*Ships design*/
@@ -52,30 +55,26 @@ body {
 }
 
 
-.battleship1 {
+.destroyer-container {
   --width: 2;
 }
 
-.battleship2{
+.submarine-container{
   --width: 3;
 }
 
-.battleship3 {
+.cruiser-container {
   --width: 3;
 }
 
-.battleship4 {
+.battleship-container {
   --width: 4;
 }
 
-.battleship5{
+.carrier-container {
   --width: 5;
 }
 
-/*---------------------------------------------------------------*/
-/*draggable ship*/
-/*each ship can be drag into player map but the computer or you can change in the script( DO NOT DO THAT PLEASE)*/ 
-/*computer ships*/
 .taken,
 .ship {
   position: relative;
@@ -83,12 +82,10 @@ body {
 
 }
 
-.takenC,
-.shipC {
-  position: relative;
-  background-color: red;
-
-}
+/*---------------------------------------------------------------*/
+/*draggable ship*/
+/*each ship can be drag into player map but the computer or you can change in the script( DO NOT DO THAT PLEASE)*/ 
+/*computer ships*/
 
 .taken.start.vertical,
 .taken.start.vertical::before {
@@ -119,72 +116,169 @@ body {
   content: '';
   position: absolute;
   border: .3vmin solid white;
-  top: 1px;
-  bottom: 1px;
-  left: 1px;
-  right: 1px;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
 }
-
-
 
 /*----------------------------------------------------*/
 /*Rotate ships*/
-.battleship1-vertical{
+
+
+.destroyer-container-vertical {
   --height: 2;
   --width: 1;
 }
 
-.battleship2-vertical{
+
+.submarine-container-vertical{
   --height: 3;
   --width: 1;
 }
 
-.battleship3-vertical{
+.cruiser-container-vertical {
   --height: 3;
-  --width:1
+  --width: 1;
 }
 
-.battleship4-vertical{
+
+
+.battleship-container-vertical {
   --height: 4;
   --width: 1;
 }
 
-.battleship5-vertical{
+
+
+.carrier-container-vertical {
   --height: 5;
   --width: 1;
 }
 
 
-
 /*--------------------------------------------------*/
 /*Rotate button and start button*/
-
-
-.button-container{
-  height: 200px;
-  position: relative;
-  border: 3px solid red;
+.startButton{
+  background-color: lightgreen;
 }
 
-.rotate-button{
-  margin: 0;
+.rotateButton{
+  background-color: lightskyblue;
+}
+
+.setup-buttons{
+  background-color: black;
+}
+
+/*--------------------------------------------------*/
+/*Computer ships*/
+.grid-computer > .taken,
+.grid-computer > .boom {
+  background-color: yellow;
+
+}
+
+
+/*--------------------------------------------------*/
+/*Turn display board*/
+
+.hidden-info {
+  font-size: 1.5rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-text {
+  margin: 1rem;
+}
+
+/*--------------------------------------------------*/
+/*Attack dots*/
+.miss,
+.boom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boom::after,
+.miss::after {
+  content: '';
   position: absolute;
-  top: 75%;
-  left: 30%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
 }
 
-.start-button{
-  margin: 0;
+.miss::after {
+  background-color: white;
+}
+
+.boom::after {
+  background-color: red;
+}
+
+.miss::before {
+  content: '';
   position: absolute;
-  top: 75%;
-  left: 70%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  animation: hit .2s ease-out forwards;
+  border: 1vmin solid white;
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
 }
 
-/*---------------------------------------------------------*/
+.boom {
+  animation: boom .2s ease-out forwards;
+}
+
+@keyframes hit {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+@keyframes boom {
+  0% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: hsl(200, 100%, 50%);
+  }
+}
+
+/*--------------------------------------------------*/
+/*Something else*/
+.homeButton{
+  color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
