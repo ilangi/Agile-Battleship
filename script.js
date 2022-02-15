@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameMode = 'singlePlayer'
 
   const homeButton = document.getElementById('home');
+  const announcement = document.getElementById('announcement')
 
   /*----------------------------------------------- */
   /*Generate the ocrean map and call it when launches */
@@ -313,6 +314,52 @@ function enemyGo(square) {
 function checkWin(){
   console.log(destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount)
   console.log("check win");
+  if(destroyerCount == 2) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Enemy destroyer was destroyed!";
+    console.log(" enemy destroyer was destroyed!")
+  }
+  if(cpuDestroyerCount == 2) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Your destroyer was destroyed!";
+    console.log(" your destroyer was destroyed!")
+  }
+  if(submarineCount == 3) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Enemy submarine was destroyed!";
+    console.log(" enemy submarine was destroyed!")
+  }
+  if(cpuSubmarineCount == 3) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Your submarine was destroyed!";
+    console.log(" your submarine was destroyed!")
+  }
+  if(cruiserCount == 3) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Enemy cruiser was destroyed!";
+    console.log(" enemy cruiser was destroyed!")
+  }
+  if(cpuCruiserCount == 3) {
+    announcement.innerHTML = "";
+    announcement.innerHTML = "Your cruiser was destroyed!";
+    console.log(" your cruiser was destroyed!")
+  }
+  if(battleshipCount == 4) {
+    announcement.innerHTML = "Enemy battleship was destroyed!";
+    console.log(" enemy battleship was destroyed!")
+  }
+  if(cpuBattleshipCount == 4) {
+    announcement.innerHTML = "Your battleship was destroyed!";
+    console.log(" your battleship was destroyed!")
+  }
+  if(carrierCount == 5) {
+    announcement.innerHTML = "Enemy carrier was destroyed!";
+    console.log(" enemy carrier was destroyed!")
+  }
+  if(cpuCarrierCount == 5) {
+    announcement.innerHTML = "Your carrier was destroyed!";
+    console.log(" your carrier was destroyed!")
+  }
   if((destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount) === 17 ){
     console.log("Player wins!")
     gameOver();
