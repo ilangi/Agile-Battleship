@@ -1,60 +1,294 @@
+
+/*-----------------------------------------------------*/
+/*Ocean map generation*/
+body {
+  margin: 0;
+  background-color: #F3F3F3;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.grid-user {
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: blue;
-  margin: 20px;
-}
-
-.grid-computer {
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: orange;
-  margin: 20px;
-}
-
-
-
 .battleship-grid {
   margin: 2vmin;
   display: grid;
   background-color: hsl(200, 100%, 50%);
-  grid-template-rows: repeat(10, 5.5vmin);
-  grid-template-columns: repeat(10, 5.5vmin);
+  grid-template-rows: repeat(10, 5.8vmin);
+  grid-template-columns: repeat(10, 5.8vmin);
 }
-
 
 .battleship-grid div {
-  border: 1px solid rgba(226, 20, 20, 0.2);
+  border: 1px solid lightgray;
 }
+
+/*--------------------------------------------------------*/
+/*Ships design*/
+/*you can change the width and height of the ship*/
+/*the way how it present in the screen*/
+/*width and height can not > the container height and width */
 
 .grid-display {
-  width: 400px;
-  height: 400px;
-  margin: 20px;
-  background-color: lightblue;
+  display: flex;
+}
+
+.ship > div {
+  width: 4.6vmin;
+  height: 4.6vmin;
+}
+
+.ship {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1vmin;
+  width: calc(4.6vmin * var(--width, 1));
+  height: calc(4.6vmin * var(--height, 1));
+  border-radius: 2.3vmin;
+}
+
+
+.destroyer-container {
+  --width: 2;
+}
+
+.submarine-container{
+  --width: 3;
+}
+
+.cruiser-container {
+  --width: 3;
+}
+
+.battleship-container {
+  --width: 4;
+}
+
+.carrier-container {
+  --width: 5;
+}
+
+.taken,
+.ship {
+  position: relative;
+  background-color: black;
+
+}
+
+/*---------------------------------------------------------------*/
+/*draggable ship*/
+/*each ship can be drag into player map but the computer or you can change in the script( DO NOT DO THAT PLEASE)*/ 
+/*computer ships*/
+
+.taken.start.vertical,
+.taken.start.vertical::before {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.taken.end.vertical,
+.taken.end.vertical::before {
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.start.horizontal,
+.taken.start.horizontal::before {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.taken.end.horizontal,
+.taken.end.horizontal::before {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.vertical::before,
+.taken.horizontal::before {
+  content: '';
+  position: absolute;
+  border: .3vmin solid white;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+}
+
+/*----------------------------------------------------*/
+/*Rotate ships*/
+
+
+.destroyer-container-vertical {
+  --height: 2;
+  --width: 1;
+}
+
+
+.submarine-container-vertical{
+  --height: 3;
+  --width: 1;
+}
+
+.cruiser-container-vertical {
+  --height: 3;
+  --width: 1;
+}
+
+
+
+.battleship-container-vertical {
+  --height: 4;
+  --width: 1;
+}
+
+
+
+.carrier-container-vertical {
+  --height: 5;
+  --width: 1;
+}
+
+
+/*--------------------------------------------------*/
+/*Rotate button and start button*/
+.startButton{
+  background-color: lightgreen;
+}
+
+.rotateButton{
+  background-color: lightskyblue;
+}
+
+.setup-buttons{
+  background-color: black;
+}
+
+/*--------------------------------------------------*/
+/*Computer ships*/
+.grid-computer > .taken,
+.grid-computer > .boom {
+  background-color: yellow;
+
+}
+
+
+/*--------------------------------------------------*/
+/*Turn display board*/
+
+.hidden-info {
+  font-size: 1.5rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-text {
+  margin: 1rem;
+}
+
+/*--------------------------------------------------*/
+/*Attack dots*/
+.miss,
+.boom {
   display: flex;
   justify-content: center;
-
+  align-items: center;
 }
 
-.draggableShip1{
+.boom::after,
+.miss::after {
+  content: '';
   position: absolute;
-  z-index: 9;
-  background-color: #f1f1f1;
-  text-align: center;
-  border: 1px solid #d3d3d3;
-
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
 }
+
+.miss::after {
+  background-color: white;
+}
+
+.boom::after {
+  background-color: red;
+}
+
+.miss::before {
+  content: '';
+  position: absolute;
+  animation: hit .2s ease-out forwards;
+  border: 1vmin solid white;
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
+}
+
+.boom {
+  animation: boom .2s ease-out forwards;
+}
+
+@keyframes hit {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+@keyframes boom {
+  0% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: hsl(200, 100%, 50%);
+  }
+}
+
+/*--------------------------------------------------*/
+/*Something else*/
+.homeButton{
+  color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
