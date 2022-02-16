@@ -37,7 +37,12 @@ body {
 /*width and height can not > the container height and width */
 
 .grid-display {
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+  background-color: lightblue;
   display: flex;
+  justify-content: center;
 }
 
 .ship > div {
@@ -262,9 +267,46 @@ body {
 }
 
 
+.homeTitle {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 50px;
+  margin: auto;
+  text-align: center;
+  text-shadow: 1px 5px 5px white;
+}
+
+.menuOptions {
+
+  margin: auto;
+  text-align: center;
+  align-content: center;
 
 
+}
 
+a:link, a:visited {
+  background-color: silver;
+  color: black;
+  border: 2px solid silver;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+a:hover, a:active {
+  background-color: #1885f2;
+  box-shadow: 1px 5px 5px #2d3a66;
+  border: 2px solid #1885f2;
+  color: #c3f4fa;
+  transition: all 0.2s ease-in;
+}
+
+html {
+  font-family: 'Anton', sans-serif;
+  background: #1c64b0;
+}
 
 
 
